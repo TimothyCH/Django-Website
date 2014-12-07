@@ -1,0 +1,75 @@
+{% load pagination_tags %}
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<link href="{% static 'website/index.css' %}" rel="stylesheet" type="text/css" media="all"/>
+<div class="all">
+	<div class="top_banner">
+		<a class="top_banner_name" href="{% url 'website:index' %}">噗哈哈哈</a>
+		<a class="top_banner_tag" href="{% url 'website:video' %}">视频</a>
+		<a class="top_banner_tag" href="{% url 'website:picture'%}">图片</a>
+		<a class="top_banner_tag" href="{% url 'website:beauty' %}">美图</a>
+		<p class="banner_text"><i>搜集网络上好玩有趣的东东！</i></p>
+	</div>
+	<div class="content_left">
+	{% autopaginate data_list 5 %}
+	{% if data_list %}
+		<ul class="content_left">
+			{% for data in data_list %}
+				<br>
+				<br>
+				<li class="content_all">
+				<div class="content_title">
+					<a class="content_title" href="{% url 'website:detail' data.id %}">{{data.title}}</a>
+				</div>
+				<hr width="480" align="left" color=#E0E0E0>
+				<p class="content_text">
+					{{data.text}}
+				</p>
+				{% if data.vtag %}
+					{% for url in data.url_set.all %}
+					<div class="content_url">
+						<embed src="{{url.text}}" allowfullscreen="true" quality="high" width="480" height="405" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash"/>
+					</div>
+					{% endfor %}
+				{% endif %}
+				{% if data.ptag %}
+					{% for url in data.url_set.all %}
+						{% if url.is_cover %}
+						<div class="content_url">
+							<a href="{% url 'website:detail' data.id %}"><img src="{{url.text}}" width="480"/></a>
+						</div>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+				{% if data.btag %}
+					{% for url in data.url_set.all %}
+						{% if url.is_cover %}
+						<div class="content_url">
+							<img src="{{url.text}}" width="480"/>
+						</div>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+				<hr width="480" align="left" color=#E0E0E0>
+				<div><i class="content_date">{{data.date}}</i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="content_comment_number" href="{% url 'website:detail' data.id %}">有({{data.comments_set.all.count}})位童鞋发表了评论</a></div>
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No data here!</p>
+	{% endif %}
+	</div>
+	{% paginate %}
+	
+	<div class="end">
+	<br>
+	<br>
+	<br>
+	本站不提供任何上传服务，所有内容均来自网络上的公开引用资源
+	<hr>
+	联系邮箱:puhahaha@163.com
+	<br>
+	<br>
+	</div>
+</div>
+</html>

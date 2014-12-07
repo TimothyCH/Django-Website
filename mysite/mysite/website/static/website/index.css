@@ -1,0 +1,55 @@
+div.all{
+position:absolute;
+top:5%;
+left:15%;
+right:15%;
+}
+a.top_banner_name{
+font-family:sans-serif;
+color:white;
+text-decoration:none;
+background-color:#3FB5FF;
+padding:7px 7px 7px 7px;
+}
+div.top_banner{
+display:inline;
+}
+a.top_banner_tag{
+background-color:#F5F5F5;
+text-decoration:none;
+padding:7px 7px 7px 7px;
+}
+ul.content_left{
+margin:0px;
+padding:0px;
+}
+li.content_all{
+border:1px solid #E0E0E0;
+padding:10px 10px 8px 20px;
+width:46%;
+list-style-type:none;
+}
+a.content_title{
+font-size:17pt;
+text-decoration:none;
+color:black;
+}
+p.content_text{
+font-size:13pt;
+}
+div.end{
+text-align:center;
+}
+
+
+div.detail_title{
+font-size:18pt;
+text-decoration:none;
+color:black;
+}
+div.detail_date{
+font-size:10pt
+}
+div.detail_text{
+font-size:15pt
+}
